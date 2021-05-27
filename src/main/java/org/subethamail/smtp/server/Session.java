@@ -32,6 +32,7 @@ import org.subethamail.smtp.server.SessionHandler.SessionAcceptance;
  *
  * @author Jon Stevens
  * @author Jeff Schnitzer
+ * @author VEP
  */
 public final class Session implements Runnable, MessageContext {
     private final static Logger log = LoggerFactory.getLogger(Session.class);
@@ -102,6 +103,9 @@ public final class Session implements Runnable, MessageContext {
     /** Some more state information */
     private boolean tlsStarted;
     private Certificate[] tlsPeerCertificates;
+
+    /** Some xtext attributes from postfix */
+    private Map<String, String> xattributes;
 
     /**
      * Creates the Runnable Session object.
@@ -543,5 +547,13 @@ public final class Session implements Runnable, MessageContext {
     @Override
     public Certificate[] getTlsPeerCertificates() {
         return tlsPeerCertificates;
+    }
+
+    public void setXattributes(Map<String, String> xattributes) {
+        this.xattributes = xattributes;
+    }
+
+    public Map<String, String> getXattributes() {
+        return this.xattributes;
     }
 }

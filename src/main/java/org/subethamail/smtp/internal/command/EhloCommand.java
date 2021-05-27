@@ -14,6 +14,7 @@ import org.subethamail.smtp.server.Session;
  * @author Jon Stevens
  * @author Jeff Schnitzer
  * @author Scott Hernandez
+ * @author VEP
  */
 public final class EhloCommand extends BaseCommand
 {
@@ -53,6 +54,9 @@ public final class EhloCommand extends BaseCommand
 		response.append("250-");
 		response.append(sess.getServer().getHostName());
 		response.append("\r\n" + "250-8BITMIME");
+
+		// Support postfix transmitting client or message attributes
+		response.append("\r\n" + "250-XFORWARD NAME ADDR PROTO HELO");
 
 		int maxSize = sess.getServer().getMaxMessageSize();
 		if (maxSize > 0)

@@ -5,20 +5,7 @@
 
 package org.subethamail.smtp.internal.server;
 
-import org.subethamail.smtp.internal.command.AuthCommand;
-import org.subethamail.smtp.internal.command.BdatCommand;
-import org.subethamail.smtp.internal.command.DataCommand;
-import org.subethamail.smtp.internal.command.EhloCommand;
-import org.subethamail.smtp.internal.command.ExpandCommand;
-import org.subethamail.smtp.internal.command.HelloCommand;
-import org.subethamail.smtp.internal.command.HelpCommand;
-import org.subethamail.smtp.internal.command.MailCommand;
-import org.subethamail.smtp.internal.command.NoopCommand;
-import org.subethamail.smtp.internal.command.QuitCommand;
-import org.subethamail.smtp.internal.command.ReceiptCommand;
-import org.subethamail.smtp.internal.command.ResetCommand;
-import org.subethamail.smtp.internal.command.StartTLSCommand;
-import org.subethamail.smtp.internal.command.VerifyCommand;
+import org.subethamail.smtp.internal.command.*;
 
 /**
  * Enumerates all the Commands made available in this release.
@@ -31,6 +18,7 @@ public enum CommandRegistry
 	DATA(new DataCommand(), true, true),
 	EHLO(new EhloCommand(), false, false),
 	HELO(new HelloCommand(), true, false),
+	XFORWARD(new XforwardCommand(), false, true),
 	HELP(new HelpCommand(), true, true),
 	MAIL(new MailCommand(), true, true),
 	NOOP(new NoopCommand(), false, false),
